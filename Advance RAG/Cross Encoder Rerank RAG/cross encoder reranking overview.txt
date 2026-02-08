@@ -1,0 +1,20 @@
+In Normal RAG Pipeline:
+Query → Embed → Vector Search → Top-K Chunks → LLM
+
+Vector search uses bi-encoders (query and document embedded separately).
+This is fast but not very precise.
+
+Cross-encoder:
+
+Takes (query, document) together
+Feeds them into a transformer at the same time
+Outputs a relevance score
+
+User Query
+   ↓
+Dense Retriever (Top 20–50 chunks)
+   ↓
+Cross-Encoder Re-Ranker (Top 5–8)
+   ↓
+LLM Answer Generation
+
